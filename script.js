@@ -18,15 +18,19 @@ window.addEventListener("DOMContentLoaded", showWordOfTheDay);
 // Theme toggle logic
 themeToggle.addEventListener("click", () => {
     const body = document.body;
+    const icon = themeToggle.querySelector(".material-icons");
     if (body.classList.contains("dark")) {
         body.classList.remove("dark");
-        body.classList.add("light");
-        themeToggle.querySelector(".material-icons").textContent = "light_mode";
+        if (icon) icon.textContent = "dark_mode"; // show option to go dark
     } else {
-        body.classList.remove("light");
         body.classList.add("dark");
-        themeToggle.querySelector(".material-icons").textContent = "dark_mode";
+        if (icon) icon.textContent = "light_mode"; // show option to go light
     }
+});
+
+window.addEventListener("DOMContentLoaded", () => {
+    const icon = themeToggle && themeToggle.querySelector(".material-icons");
+    if (icon) icon.textContent = document.body.classList.contains("dark") ? "light_mode" : "dark_mode";
 });
 function data(result, word){
     if(result.title){
